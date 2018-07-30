@@ -1,3 +1,7 @@
 #!/bin/bash
+if [ "$#" -ne 1 ]; then
+    echo "Illegal number of parameters"
+    exit
+fi
 
-bin/solution
+problems/$1/build/launch < problems/$1/tests/large.txt
