@@ -24,5 +24,5 @@ void Solution::read_input() {}
 void Solution::solve_internal() {}
 
 void Solution::print_answer() {
-  cout << "Case #" << case_number_ + 1 << ": " << answer_ << endl;
+  cout << "Case #" << case_number_ + 1 << ": " << endl;
 }
