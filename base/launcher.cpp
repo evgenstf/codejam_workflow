@@ -13,12 +13,12 @@ int main() {
     solution.start_solving_thread();
     while (free_threads_count == 0) {}
   }
-  log("all solutions started", "main", "");
+  log("solutions started", "main", "");
 
   for (auto& solution : solutions) {
     solution.join();
     solution.print_answer();
   }
-  log("all solutions finished", "main", "");
+  log("solutions finished", "main", "");
 }
 
