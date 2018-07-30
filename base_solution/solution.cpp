@@ -5,13 +5,22 @@
 #include <cassert>
 #include <thread>
 #include <vector>
+#include <mutex>
 
 using namespace std;
 
 constexpr size_t kMaxThreadsCount = 15;
 
+namespace logger {
+  mutex logs_mutex;
+};
+
 #define log(log_message, method_name, class_name)\
-  clog << '[' << class_name << "::" << method_name << "]: " << log_message << endl;
+{\
+  lock_guard<mutex> lock(logger::logs_mutex);\
+  clog << '[' << class_name << "::" << method_name << "]: " << log_message << endl;\
+}
+
 
 class Solution {
 protected:
@@ -37,6 +46,10 @@ public:
     assert(free_threads_count_ > 0);
     --free_threads_count_;
     solving_thread_ = make_unique<thread>([this]{this->solve();});
+  }
+
+  void join() {
+    solving_thread_->join();
   }
 
 private:
@@ -65,6 +78,9 @@ int main() {
   for (auto& solution : solutions) {
     solution.start_solving_thread();
     while (free_threads_count == 0) {}
+  }
+  for (auto& solution : solutions) {
+    solution.join();
   }
   log("all solutions finished", "main", "");
 }
