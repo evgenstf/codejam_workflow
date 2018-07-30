@@ -7,7 +7,7 @@
 #include <vector>
 #include <mutex>
 
-constexpr size_t kMaxThreadsCount = 15;
+constexpr size_t kMaxThreadsCount = 19;
 
 namespace logger {
   std::mutex logs_mutex;
