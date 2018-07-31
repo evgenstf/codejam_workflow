@@ -7,7 +7,7 @@ fi
 echo "build solution"
 ./build.sh $1
 echo "start solution"
-time problems/$1/build/launch < problems/$1/tests/$2.txt > problems/$1/answers/$2.ans
+time problems/$1/build/$1_launch < problems/$1/tests/$2.txt > problems/$1/answers/$1_$2.ans
 
 echo "----------------------------"
-head problems/$1/answers/$2.ans
+head problems/$1/answers/$1_$2.ans
