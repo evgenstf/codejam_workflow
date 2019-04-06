@@ -1,5 +1,5 @@
 int main() {
-  atomic<size_t> free_threads_count = kMaxThreadsCount;
+  atomic<size_t> free_threads_count(kMaxThreadsCount);
 
   size_t case_count;
   cin >> case_count;
