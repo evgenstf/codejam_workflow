@@ -1,11 +1,35 @@
-#include <iostream>
-#include <sstream>
+#define LOG(message) do { if (enable_logging) { clog << "[" << class_name_ << "::" << __func__ << "]: " << message << endl; } } while (false);
+
+#ifdef DEBUG
+#define DBG(message) do { if (enable_logging) { clog << "<" << class_name_ << "::" << __func__ << ">: " << message << endl; } } while (false);
+#else
+#define DBG(message) do {} while (false);
+#endif
+
+#define ASSERT(condition, message) do { if (!(condition)) { LOG(message); exit(1); } } while (false);
+
+#include <algorithm>
 #include <atomic>
-#include <memory>
+#include <bitset>
 #include <cassert>
+#include <fstream>
+#include <iostream>
+#include <memory>
+#include <random>
+#include <set>
+#include <map>
+#include <sstream>
 #include <thread>
+#include <unordered_map>
+#include <unordered_set>
 #include <vector>
-#include <mutex>
+#include <tuple>
+
+#define X first
+#define Y second
+#define PT pair<int, int>
+#define mk make_pair
+#define ll long long
 
 using namespace std;
 
